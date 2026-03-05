@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm nhân viên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional icon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            min-height: 100vh;
+        }
+
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-main {
+            font-size: 1.1rem;
+            padding: 12px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-11 col-sm-10 col-md-8 col-lg-5">
+
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4 text-primary fw-bold">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Thêm nhân viên phòng trực
+                        </h3>
+
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <!-- Tên nhân viên -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Tên nhân viên</label>
+                                <input type="text" name="full_name" class="form-control"
+                                    placeholder="Nhập tên nhân viên" required>
+                            </div>
+
+                            <!-- Số điện thoại -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Số điện thoại</label>
+                                <input type="text" name="phone" class="form-control" placeholder="VD: 0912345678"
+                                    required>
+                            </div>
+
+                            <!-- Mật khẩu -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Mật khẩu</label>
+                                <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu"
+                                    required>
+                            </div>
+
+                            <!-- Chức vụ -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Chức vụ</label>
+                                <select name="role" class="form-select" required>
+                                    <option value="">-- Chọn chức vụ --</option>
+                                    <option value="leader">Tổ trưởng</option>
+                                    <option value="staff">Nhân viên trực</option>
+                                </select>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-main">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Thêm nhân viên
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <p class="text-center text-white mt-3 small">
+                    Hệ thống quản lý phòng máy Headend
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

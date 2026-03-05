@@ -1,0 +1,21 @@
+# Bỏ qua file credentials
+firebase_key.json
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+*.log
+media/
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
