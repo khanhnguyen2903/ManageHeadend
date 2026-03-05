@@ -15,7 +15,7 @@ from django.conf import settings
 firebase_creds_json = os.getenv('FIREBASE_CREDENTIALS_BASE64')
 if firebase_creds_json:
     # Chạy trên Render: dùng biến môi trường
-    data = base64.b64decode(os.environ["FIREBASE_CREDENTIAL_BASE64"])
+    data = base64.b64decode(firebase_creds_json)
     cred = credentials.Certificate(json.loads(data))
 else:
     # Chạy local: dùng file JSON
