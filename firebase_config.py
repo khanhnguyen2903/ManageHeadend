@@ -1,6 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, db
-import os, json
+import os, json, base64
 from django.conf import settings
 
 # if not firebase_admin._apps:
@@ -12,10 +12,11 @@ from django.conf import settings
 #         'databaseURL': 'https://manageheadend-default-rtdb.firebaseio.com/'
 #     })
 # Kiểm tra biến môi trường
-firebase_creds_json = os.getenv('FIREBASE_CREDENTIALS')
+firebase_creds_json = os.getenv('FIREBASE_CREDENTIALS_BASE64')
 if firebase_creds_json:
     # Chạy trên Render: dùng biến môi trường
-    cred = credentials.Certificate(json.loads(firebase_creds_json))
+    data = base64.b64decode(os.environ["FIREBASE_CREDENTIAL_BASE64"])
+    cred = credentials.Certificate(json.loads(data))
 else:
     # Chạy local: dùng file JSON
     # Đường dẫn tuyệt đối tới file firebase_config.json
