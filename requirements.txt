@@ -6,3 +6,4 @@ psycopg2-binary
 requests
 python-decouple
 firebase-admin
+reportlab
