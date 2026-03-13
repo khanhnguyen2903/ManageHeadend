@@ -147,3 +147,39 @@ def logout_user(request):
 
     # Chuyển về trang list_user
     return redirect('login_user')
+
+def change_password(request):
+    if request.method == "POST":
+    
+        phone = request.POST.get("username")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+        # kiểm tra dữ liệu nhập
+        if not phone or not new_password or not confirm_password:
+            messages.error(request, "Vui lòng nhập đầy đủ thông tin")
+            return render(request, "users/change_password.html")
+
+        # 🔥 lấy dữ liệu user từ Firebase
+        user_ref = db.reference(f'users/{phone}')
+        user_data = user_ref.get()
+
+        if not user_data:
+            messages.error(request, "Số điện thoại không tồn tại")
+            return render(request, "users/change_password.html")
+
+        # kiểm tra xác nhận mật khẩu
+        if new_password != confirm_password:
+            messages.error(request, "Xác nhận mật khẩu không khớp")
+            return render(request, "users/change_password.html")
+
+        # 🔐 cập nhật mật khẩu mới
+        user_ref.update({
+            "password": new_password
+        })
+
+        messages.success(request, "Đổi mật khẩu thành công, vui lòng đăng nhập lại")
+
+        return redirect("login_user")
+
+    return render(request, "users/change_password.html")
