@@ -3,14 +3,6 @@ from firebase_admin import credentials, db
 import os, json
 from django.conf import settings
 
-# if not firebase_admin._apps:
-#     cred = credentials.Certificate(
-#         os.path.join(settings.BASE_DIR, 'firebase_key.json')
-#     )
-
-#     firebase_admin.initialize_app(cred, {
-#         'databaseURL': 'https://manageheadend-default-rtdb.firebaseio.com/'
-#     })
 # Kiểm tra biến môi trường
 firebase_creds_json = os.getenv('FIREBASE_CREDENTIALS')
 if firebase_creds_json:
